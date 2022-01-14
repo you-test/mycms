@@ -6,3 +6,51 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// base
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+header {
+
+}
+
+// component
+.btn {
+  font-size: 1.6rem;
+  display: block;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: skyblue;
+}
+
+.form-input {
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+// site top
+.container.site-top {
+  width: 500px;
+  padding: 40px;
+  background: #fff;
+
+  .btn {
+    margin: 0 auto;
+  }
+}

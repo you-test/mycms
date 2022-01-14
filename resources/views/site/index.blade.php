@@ -1,17 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="" class="site-title">
+<header class="px-5 py-5 shadow bg-body rounded">
+  <a href="" class="site-title">
   <h1>ホテルサッポロ</h1>
 </a>
-<h2>宿泊予約</h2>
-<div class="container">
+</header>
+
+<h2 class="text-center mt-5 fw-bold">宿泊予約</h2>
+<div class="container site-top shadow bg-body rounded">
   <form action="">
-    <div>
+    <div class="form-input text-center">
       <label for="check-in">予約日</label>
-      <input type="text" id="check-in">
+      <input type="date" id="check-in">
     </div>
-    <div>
+    <div class="form-input text-center">
       <label for="num">人数</label>
       <select name="num" id="num">
         <option value="1">1</option>
