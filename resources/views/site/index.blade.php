@@ -9,7 +9,8 @@
 
 <h2 class="text-center mt-5 fw-bold">宿泊予約</h2>
 <div class="container site-top shadow bg-body rounded">
-  <form action="">
+  <form action="{{ route('site.result') }}" method="POST">
+    @csrf
     <div class="form-input text-center">
       <label for="check-in">予約日</label>
       <input type="date" id="check-in">

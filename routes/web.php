@@ -17,3 +17,4 @@ use App\Http\Controllers\ReservationController;
 Auth::routes();
 
 Route::get('/', [ReservationController::class, 'index'])->name('site.index');
+Route::post('/result', [ReservationController::class, 'showResult'])->name('site.result');

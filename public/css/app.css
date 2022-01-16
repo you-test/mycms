@@ -11325,3 +11325,14 @@ h2, .h2 {
 .container.site-top .btn {
   margin: 0 auto;
 }
+
+.room-image {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.room-image img {
+  width: 100%;
+  height: 100%;
+}
