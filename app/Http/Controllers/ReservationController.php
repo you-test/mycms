@@ -16,4 +16,9 @@ class ReservationController extends Controller
     {
         return view('site.result');
     }
+
+    public function showInfo()
+    {
+        return view('site.info');
+    }
 }

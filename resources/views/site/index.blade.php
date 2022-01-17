@@ -2,7 +2,7 @@
 
 @section('content')
 <header class="px-5 py-5 shadow bg-body rounded">
-  <a href="" class="site-title">
+  <a href="{{ route('site.index') }}" class="site-title">
   <h1>ホテルサッポロ</h1>
 </a>
 </header>
