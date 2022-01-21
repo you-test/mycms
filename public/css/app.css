@@ -11362,3 +11362,7 @@ h2, .h2 {
 .info-contents button {
   margin: 0 auto;
 }
+
+.confirm-contents label {
+  width: 150px;
+}

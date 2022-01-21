@@ -9,7 +9,8 @@
 
 <h2 class="text-center mt-5 fw-bold">お客様情報入力</h2>
 <div class="container info-contents shadow bg-body rounded p-5">
-  <form action="" method="POST">
+  <form action="{{ route('site.confirm') }}" method="POST">
+    @csrf
     <div class="info-block mb-3">
       <label for="name">お名前</label>
       <input type="text" name="name" id="name" value="2022年1月6日">
