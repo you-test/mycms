@@ -13,11 +13,11 @@
     @csrf
     <div class="info-block mb-3">
       <label for="name">お名前</label>
-      <input type="text" name="name" id="name" value="2022年1月6日">
+      <input type="text" name="name" id="name">
     </div>
     <div class="info-block mb-3">
       <label for="address">ご住所</label>
-      <input type="text" name="address" value="北海道札幌市大通4丁目">
+      <input type="text" name="address">
     </div>
     <div class="info-block mb-3">
       <label for="mail">メールアドレス</label>
@@ -26,9 +26,9 @@
     <div class="info-block mb-3 d-flex">
       <p>お支払方法</p>
       <div>
-        <input type="radio" name="pay" id="cash">
+        <input type="radio" name="pay" id="cash" value="現金">
         <label for="cash" class="me-4">現金</label>
-        <input type="radio" name="pay" id="credit-card">
+        <input type="radio" name="pay" id="credit-card" value="クレジットカード">
         <label for="credit-card">クレジットカード</label>
       </div>
     </div>

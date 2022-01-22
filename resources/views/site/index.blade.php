@@ -13,7 +13,7 @@
     @csrf
     <div class="form-input text-center">
       <label for="check-in">予約日</label>
-      <input type="date" id="check-in">
+      <input type="date" name="date" id="check-in">
     </div>
     <div class="form-input text-center">
       <label for="num">人数</label>

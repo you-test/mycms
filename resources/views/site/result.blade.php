@@ -18,6 +18,7 @@
     <div class="room-content flex-grow-1 ps-5">
       <p class="room-name">シングル</p>
       <p class="room-discritpion">快適なベッドのあるお部屋です。</p>
+      <input type="hidden" name="room" value="シングル">
       <button type="submit" class="btn">予約する</button>
     </div>
   </form>

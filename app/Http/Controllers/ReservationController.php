@@ -22,13 +22,26 @@ class ReservationController extends Controller
         return view('site.result');
     }
 
-    public function showInfo()
+    public function showInfo(Request $request)
     {
+        $room = $request->room;
+        $request->session()->put('room', $room);
+
         return view('site.info');
     }
 
-    public function showConfirm()
+    public function showConfirm(Request $request)
     {
+        $name = $request->name;
+        $address = $request->address;
+        $mail = $request->mail;
+        $pay = $request->pay;
+
+        $request->session()->put('name', $name);
+        $request->session()->put('address', $address);
+        $request->session()->put('mail', $mail);
+        $request->session()->put('pay', $pay);
+
         return view('site.confirm');
     }
 }
