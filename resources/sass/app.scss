@@ -35,6 +35,18 @@ h2 {
   color: #fff;
 }
 
+.link-btn {
+  font-size: 1.6rem;
+  display: block;
+  width: 100px;
+  border-radius: 5px;
+  background: rgb(60, 179, 226);
+  color: #fff;
+  line-height: 1.6;
+  text-align: center;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .form-input {
   margin-bottom: 20px;
   border-radius: 5px;
@@ -105,5 +117,23 @@ h2 {
 .confirm-contents {
   label {
     width: 150px;
+  }
+}
+
+// site complete
+.complete-contents {
+  .complete-block {
+    p {
+      display: inline-block;
+    }
+
+    .complete-block-title {
+      width: 200px;
+    }
+  }
+
+  .link-btn {
+    width: 140px;
+    margin: 0 auto;
   }
 }

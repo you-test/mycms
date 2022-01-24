@@ -8,7 +8,7 @@
 </header>
 
 <h2 class="text-center mt-5 fw-bold">ご予約可能なお部屋一覧</h2>
-<p class="text-center mt-5 fw-bold">2022年1月6日</p>
+<p class="text-center mt-5 fw-bold"><?= $date ?></p>
 <div class="room-block container shadow bg-body rounded  p-5">
   <form action="{{ route('site.info') }}" method="post" class="d-flex">
     @csrf

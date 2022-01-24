@@ -19,7 +19,7 @@ class ReservationController extends Controller
         $request->session()->put('date', $date);
         $request->session()->put('num', $num);
 
-        return view('site.result');
+        return view('site.result', ['date' => $date]);
     }
 
     public function showInfo(Request $request)
@@ -32,6 +32,9 @@ class ReservationController extends Controller
 
     public function showConfirm(Request $request)
     {
+        $date = $request->session()->get('date');
+        $num = $request->session()->get('num');
+        $room = $request->session()->get('room');
         $name = $request->name;
         $address = $request->address;
         $mail = $request->mail;
@@ -42,6 +45,41 @@ class ReservationController extends Controller
         $request->session()->put('mail', $mail);
         $request->session()->put('pay', $pay);
 
-        return view('site.confirm');
+        $confirmData = [
+            'date' => $date,
+            'num' => $num,
+            'room' => $room,
+            'name' => $name,
+            'address' => $address,
+            'mail' => $mail,
+            'pay' => $pay,
+        ];
+
+        return view('site.confirm', $confirmData);
+    }
+
+    public function showComplete(Request $request)
+    {
+        $date = $request->session()->get('date');
+        $num = $request->session()->get('num');
+        $room = $request->session()->get('room');
+        $name= $request->session()->get('name');
+        $address = $request->session()->get('address');
+        $mail = $request->session()->get('mail');
+        $pay = $request->session()->get('pay');
+
+        $sessionData = [
+            'date' => $date,
+            'num' => $num,
+            'room' => $room,
+            'name' => $name,
+            'address' => $address,
+            'mail' => $mail,
+            'pay' => $pay,
+        ];
+
+        $request->session()->flush();
+
+        return view('site.complete', $sessionData);
     }
 }
