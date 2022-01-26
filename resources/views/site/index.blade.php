@@ -9,6 +9,15 @@
 
 <h2 class="text-center mt-5 fw-bold">宿泊予約</h2>
 <div class="container site-top shadow bg-body rounded">
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
   <form action="{{ route('site.result') }}" method="POST">
     @csrf
     <div class="form-input text-center">

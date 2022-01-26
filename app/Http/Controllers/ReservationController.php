@@ -14,6 +14,11 @@ class ReservationController extends Controller
 
     public function showResult(Request $request)
     {
+        $request->validate([
+            'date' => 'required',
+            'num'  => 'required|max:10',
+        ]);
+
         $date = $request->date;
         $num = $request->num;
         $request->session()->put('date', $date);
@@ -32,6 +37,16 @@ class ReservationController extends Controller
 
     public function showConfirm(Request $request)
     {
+        // $request->validate([
+        //     'date' => 'required',
+        //     'num' => 'required|max:10',
+        //     'room' => 'required',
+        //     'name' => 'required|max:255',
+        //     'address' => 'required|max:255',
+        //     'mail' => 'required|max:255|min:8|regex:/^[a-zA-Z0-9]+$/',
+        //     'pay' => 'required',
+        // ]);
+
         $date = $request->session()->get('date');
         $num = $request->session()->get('num');
         $room = $request->session()->get('room');
