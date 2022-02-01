@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::get('/', [ReservationController::class, 'index'])->name('site.index');
 Route::post('/result', [ReservationController::class, 'showResult'])->name('site.result');
+Route::get('/info', [ReservationController::class, 'redirectToInfo']);
 Route::post('/info', [ReservationController::class, 'showInfo'])->name('site.info');
 Route::post('/confirm', [ReservationController::class, 'showConfirm'])->name('site.confirm');
 Route::post('/complete', [ReservationController::class, 'showComplete'])->name('site.complete');

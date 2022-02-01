@@ -9,6 +9,15 @@
 
 <h2 class="text-center mt-5 fw-bold">お客様情報入力</h2>
 <div class="container info-contents shadow bg-body rounded p-5">
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
   <form action="{{ route('site.confirm') }}" method="POST">
     @csrf
     <div class="info-block mb-3">

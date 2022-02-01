@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\showConfirmRequest;
 
 class ReservationController extends Controller
 {
@@ -27,6 +28,11 @@ class ReservationController extends Controller
         return view('site.result', ['date' => $date]);
     }
 
+    public function redirectToInfo()
+    {
+        return view('site.info');
+    }
+
     public function showInfo(Request $request)
     {
         $room = $request->room;
@@ -37,15 +43,12 @@ class ReservationController extends Controller
 
     public function showConfirm(Request $request)
     {
-        // $request->validate([
-        //     'date' => 'required',
-        //     'num' => 'required|max:10',
-        //     'room' => 'required',
-        //     'name' => 'required|max:255',
-        //     'address' => 'required|max:255',
-        //     'mail' => 'required|max:255|min:8|regex:/^[a-zA-Z0-9]+$/',
-        //     'pay' => 'required',
-        // ]);
+        $request->validate([
+            'name' => 'required|max:255',
+            'address' => 'required|max:255',
+            'mail' => 'required|max:255|min:8|email',
+            'pay' => 'required',
+        ]);
 
         $date = $request->session()->get('date');
         $num = $request->session()->get('num');
