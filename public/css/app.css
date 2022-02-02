@@ -11375,7 +11375,7 @@ h2, .h2 {
   margin: 0 auto;
 }
 
-.confirm-contents label {
+.confirm-contents .confirm-title {
   width: 150px;
 }
 

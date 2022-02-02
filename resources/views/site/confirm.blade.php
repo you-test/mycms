@@ -9,37 +9,34 @@
 
 <h2 class="text-center mt-5 fw-bold">予約確認</h2>
 <div class="container confirm-contents shadow bg-body rounded p-5">
-  <form action="{{ route('site.complete') }}" method="POST">
-    @csrf
     <div class="confirm-block mb-3">
-      <label for="date">予約日</label>
-      <input type="text" value="<?= $date ?>" id="date">
+      <p class="confirm-title d-inline-block">予約日</p>
+      <p class="d-inline-block"><?= $date ?></p>
     </div>
     <div class="confirm-block mb-3">
-      <label for="num">ご利用人数</label>
-      <input type="text" value="<?= $num ?>" id="num">
+      <p class="confirm-title d-inline-block">ご利用人数</p>
+      <p class="d-inline-block"><?= $num ?></p>
     </div>
     <div class="confirm-block mb-5">
-      <label for="room">お部屋タイプ</label>
-      <input type="text" value="<?= $room ?>" id="room">
+      <p class="confirm-title d-inline-block">お部屋タイプ</p>
+      <p class="d-inline-block"><?= $room ?></p>
     </div>
     <div class="confirm-block mb-3">
-      <label for="name">お名前</label>
-      <input type="text" value="<?= $name ?>" id="name">
+      <p class="confirm-title d-inline-block">お名前</p>
+      <p class="d-inline-block"><?= $name ?></p>
     </div>
     <div class="confirm-block mb-3">
-      <label for="address">ご住所</label>
-      <input type="text" value="<?= $address ?>" id="address">
+      <p class="confirm-title d-inline-block">ご住所</p>
+      <p class="d-inline-block"><?= $address ?></p>
     </div>
     <div class="confirm-block mb-3">
-      <label for="mail">メールアドレス</label>
-      <input type="text" value="<?= $mail ?>" id="mail">
+      <p class="confirm-title d-inline-block">メールアドレス</p>
+      <p class="d-inline-block"><?= $mail ?></p>
     </div>
     <div class="confirm-block mb-5">
-      <label for="card">クレジットカード</label>
-      <input type="text" value="<?= $pay ?>" id="card">
+      <p class="confirm-title d-inline-block">クレジットカード</p>
+      <p class="d-inline-block"><?= $pay ?></p>
     </div>
-    <button type="submit" class="btn">予約確定</button>
-  </form>
+    <a href="{{ route('site.complete') }}" class="btn">予約確定</a>
 </div>
 @endsection

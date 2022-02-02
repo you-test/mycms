@@ -22,22 +22,22 @@
     @csrf
     <div class="info-block mb-3">
       <label for="name">お名前</label>
-      <input type="text" name="name" id="name">
+      <input type="text" name="name" id="name" value="{{ old('name') }}">
     </div>
     <div class="info-block mb-3">
       <label for="address">ご住所</label>
-      <input type="text" name="address">
+      <input type="text" name="address" value="{{ old('address') }}">
     </div>
     <div class="info-block mb-3">
       <label for="mail">メールアドレス</label>
-      <input type="text" name="mail" id="mail">
+      <input type="text" name="mail" id="mail" value="{{ old('mail') }}">
     </div>
     <div class="info-block mb-3 d-flex">
       <p>お支払方法</p>
       <div>
-        <input type="radio" name="pay" id="cash" value="現金">
+        <input type="radio" name="pay" id="cash" value="現金" @if (old('pay') === '現金') checked @endif>
         <label for="cash" class="me-4">現金</label>
-        <input type="radio" name="pay" id="credit-card" value="クレジットカード">
+        <input type="radio" name="pay" id="credit-card" value="クレジットカード" @if (old('pay') === 'クレジットカード') checked @endif>
         <label for="credit-card">クレジットカード</label>
       </div>
     </div>
