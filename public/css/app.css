@@ -11389,3 +11389,14 @@ h2, .h2 {
   width: 140px;
   margin: 0 auto;
 }
+
+/*----------------------------
+ admin
+------------------------------*/
+.sidebar {
+  min-height: 100vh;
+}
+
+.menu-btn {
+  width: 140px;
+}

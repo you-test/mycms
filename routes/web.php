@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Admin\ShowDisplayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/info', [ReservationController::class, 'redirectToInfo']);
 Route::post('/info', [ReservationController::class, 'showInfo'])->name('site.info');
 Route::post('/confirm', [ReservationController::class, 'showConfirm'])->name('site.confirm');
 Route::get('/complete', [ReservationController::class, 'showComplete'])->name('site.complete');
+
+Route::get('/admin', [ShowDisplayController::class, 'showIndex'])->name('admin.index');
