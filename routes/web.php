@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\ShowDisplayController;
+use App\Http\Controllers\Admin\FacilitiesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,4 @@ Route::post('/confirm', [ReservationController::class, 'showConfirm'])->name('si
 Route::get('/complete', [ReservationController::class, 'showComplete'])->name('site.complete');
 
 Route::get('/admin', [ShowDisplayController::class, 'showIndex'])->name('admin.index');
+Route::get('/admin/facilities', [FacilitiesController::class, 'index'])->name('facilities.index');
