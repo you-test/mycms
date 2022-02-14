@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\ShowDisplayController;
 use App\Http\Controllers\Admin\FacilitiesController;
+use App\Http\Controllers\Admin\ReservationStockController;
+
 
 
 /*
@@ -28,3 +30,5 @@ Route::get('/complete', [ReservationController::class, 'showComplete'])->name('s
 
 Route::get('/admin', [ShowDisplayController::class, 'showIndex'])->name('admin.index');
 Route::get('/admin/facilities', [FacilitiesController::class, 'index'])->name('facilities.index');
+Route::post('/admin/facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');

@@ -165,6 +165,7 @@ return [
         'address' => 'ご住所',
         'mail' => 'メールアドレス',
         'pay' => 'お支払方法',
+        'facilitiesName' => '施設名',
     ],
 
 ];
