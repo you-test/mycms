@@ -11335,6 +11335,10 @@ h2, .h2 {
   border-radius: 5px;
 }
 
+.main-wrapper {
+  padding-top: 90px;
+}
+
 .container.site-top {
   width: 500px;
   padding: 40px;
@@ -11399,4 +11403,15 @@ h2, .h2 {
 
 .menu-btn {
   width: 140px;
+}
+
+.reservation-stock input {
+  width: 50px;
+}
+.reservation-stock .select-month {
+  width: 150px;
+}
+.reservation-stock .room-type {
+  white-space: nowrap;
+  width: 150px;
 }

@@ -58,6 +58,10 @@ h2 {
   border-radius: 5px;
 }
 
+.main-wrapper {
+  padding-top: 90px;
+}
+
 // site top
 .container.site-top {
   width: 500px;
@@ -147,4 +151,20 @@ h2 {
 
 .menu-btn {
   width: 140px;
+}
+
+// reaervation stock
+.reservation-stock {
+  input {
+    width: 50px;
+  }
+
+  .select-month {
+    width: 150px;
+  }
+
+  .room-type {
+    white-space: nowrap;
+    width: 150px;
+  }
 }
