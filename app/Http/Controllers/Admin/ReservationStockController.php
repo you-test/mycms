@@ -11,4 +11,21 @@ class ReservationStockController extends Controller
     {
         return view('admin.reservation_stock');
     }
+
+    /**
+     * 選択した月の在庫設定データを取得する
+     *
+     */
+    public function getReservationStock()
+    {
+
+    }
+
+    /**
+     * データの登録
+     */
+    public function reservationStockRegister()
+    {
+
+    }
 }
