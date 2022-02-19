@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\showConfirmRequest;
+use App\Models\ReservationList;
 
 class ReservationController extends Controller
 {
@@ -96,8 +97,23 @@ class ReservationController extends Controller
             'pay' => $pay,
         ];
 
+        $this->addReservation($sessionData);
+
         $request->session()->flush();
 
         return view('site.complete', $sessionData);
+    }
+
+    private function addReservation(array $sessionData)
+    {
+        ReservationList::create([
+            'date' => $sessionData['date'],
+            'num' => $sessionData['num'],
+            'room' => $sessionData['room'],
+            'name' => $sessionData['name'],
+            'address' => $sessionData['address'],
+            'mail' => $sessionData['mail'],
+            'pay' => $sessionData['pay'],
+        ]);
     }
 }
