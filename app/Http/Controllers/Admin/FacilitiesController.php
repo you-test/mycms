@@ -12,7 +12,18 @@ class FacilitiesController extends Controller
     {
         $data = Facilities::first();
 
-        return view('admin.facilities', $data);
+        if ($data) {
+            return view('admin.facilities', $data);
+        }
+
+        $this->create();
+    }
+
+    private function create()
+    {
+        Facilities::create(['name' => 'no name']);
+
+        return view('admin.facilities', ['name' => 'no name']);
     }
 
     public function update(Request $request)

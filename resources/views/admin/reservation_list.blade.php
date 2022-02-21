@@ -3,7 +3,7 @@
 @section('content')
   <div class="reservation-list">
     <h2>予約一覧</h2>
-    <table>
+    <table class="table table-bordered border-secondary">
       <tr>
         <th>予約番号</th>
         <th>予約日</th>
@@ -16,7 +16,7 @@
       </tr>
       @foreach ($reservationList as $reservation)
         <tr>
-          <td>{{ $reservation->id }}</td>
+          <td>{{ str_pad("$reservation->id", 6, "0", STR_PAD_LEFT) }}</td>
           <td>{{ $reservation->date }}</td>
           <td>{{ $reservation->name }}</td>
           <td>{{ $reservation->num }}</td>
