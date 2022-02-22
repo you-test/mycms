@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<header class="px-5 py-5 shadow bg-body rounded">
-  <a href="{{ route('site.index') }}" class="site-title">
-  <h1>ホテルサッポロ</h1>
-</a>
-</header>
 
 <h2 class="text-center mt-5 fw-bold">ご予約可能なお部屋一覧</h2>
 <p class="text-center mt-5 fw-bold"><?= $date ?></p>

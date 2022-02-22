@@ -20,6 +20,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <header class="px-5 py-5 shadow bg-body rounded">
+        <a href="{{ route('site.index') }}" class="site-title">
+            <h1>{{ \App\Http\Controllers\SiteCommonController::getFacilities() }}</h1>
+        </a>
+    </header>
     @yield('content')
 </body>
 </html>
