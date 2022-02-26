@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\ShowDisplayController;
 use App\Http\Controllers\Admin\FacilitiesController;
 use App\Http\Controllers\Admin\ReservationStockController;
 use App\Http\Controllers\Admin\ReservationListController;
-
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 /*
@@ -32,3 +33,17 @@ Route::get('/admin/facilities', [FacilitiesController::class, 'index'])->name('f
 Route::post('/admin/facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
 Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');
 Route::get('/admin/reservation_list', [ReservationListController::class, 'index'])->name('reservationList.index');
+
+
+// users
+
+
+
+Route::get('/admin/user/registerform', function() {
+    return view('auth.register');
+});
+
+Route::get('/admin/login', [LoginController::class, 'showLoginForm']);
+Route::post('/admin/login', [LoginController::class, 'login']);
+
+Route::post('/admin/login/register', [RegisterController::class, 'register'])->name('user.exec.register');
