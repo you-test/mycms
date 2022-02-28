@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ReservationStockController;
 use App\Http\Controllers\Admin\ReservationListController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\UsersController;
 
 
 /*
@@ -28,22 +29,24 @@ Route::post('/info', [ReservationController::class, 'showInfo'])->name('site.inf
 Route::post('/confirm', [ReservationController::class, 'showConfirm'])->name('site.confirm');
 Route::get('/complete', [ReservationController::class, 'showComplete'])->name('site.complete');
 
-Route::get('/admin', [ShowDisplayController::class, 'showIndex'])->name('admin.index');
-Route::get('/admin/facilities', [FacilitiesController::class, 'index'])->name('facilities.index');
-Route::post('/admin/facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
-Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');
-Route::get('/admin/reservation_list', [ReservationListController::class, 'index'])->name('reservationList.index');
+
 
 
 // users
 
-
-
-Route::get('/admin/user/registerform', function() {
-    return view('auth.register');
-});
-
-Route::get('/admin/login', [LoginController::class, 'showLoginForm']);
+Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login.index');
 Route::post('/admin/login', [LoginController::class, 'login']);
+Auth::routes();
 
-Route::post('/admin/login/register', [RegisterController::class, 'register'])->name('user.exec.register');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/admin/user/registerform', function() {
+        return view('auth.register');
+    })->name('user.register');
+    Route::post('/admin/register', [RegisterController::class, 'register'])->name('user.exec.register');
+    Route::get('/admin', [ShowDisplayController::class, 'showIndex'])->name('admin.index');
+    Route::get('/admin/facilities', [FacilitiesController::class, 'index'])->name('facilities.index');
+    Route::post('/admin/facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+    Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');
+    Route::get('/admin/reservation_list', [ReservationListController::class, 'index'])->name('reservationList.index');
+    Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index');
+});

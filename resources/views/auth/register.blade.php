@@ -17,11 +17,11 @@
             @endif
             <div>
                 <label for="name">お名前</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" value="{{ old('name') }}">
             </div>
             <div>
                 <label for="email">メールアドレス</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" value="{{ old('email') }}">
             </div>
             <div>
                 <label for="password">パスワード</label>
