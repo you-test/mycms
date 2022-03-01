@@ -49,4 +49,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');
     Route::get('/admin/reservation_list', [ReservationListController::class, 'index'])->name('reservationList.index');
     Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index');
+    Route::get('/admin/users/detail', [UsersController::class, 'showDetail'])->name('users.detail');
+    Route::post('/admin/users/update', [UsersController::class, 'update'])->name('users.update');
 });

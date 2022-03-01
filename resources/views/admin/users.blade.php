@@ -11,16 +11,16 @@
         <th>メールアドレス</th>
         <th></th>
       </tr>
-      {{-- @foreach ($users as $user) --}}
+      @foreach ($users as $user)
         <form action="" method="POST">
           <tr>
-            <td>000001</td>
-            <td>佐藤　佑介</td>
-            <td>xxx@gmail.com</td>
+            <td><a href="{{ route('users.detail') . '?id=' . $user->id }}">{{ str_pad("$user->id", 6, "0", STR_PAD_LEFT) }}</a></td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
             <td><button>x</button></td>
           </tr>
         </form>
-      {{-- @endforeach --}}
+      @endforeach
     </table>
   </div>
 @endsection

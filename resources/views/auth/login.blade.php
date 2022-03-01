@@ -1,8 +1,9 @@
-@extends('layouts.admin')
+@extends('layouts.login')
 
 @section('content')
 
     <div class="login">
+        <h1>予約管理</h1>
         <h2>ログイン</h2>
         <form action="{{ url('admin/login') }}" method="POST">
             @csrf
