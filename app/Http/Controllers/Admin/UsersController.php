@@ -52,4 +52,11 @@ class UsersController extends Controller
 
         return redirect()->route('users.index');
     }
+
+    public function delete(Request $request)
+    {
+        User::find($request->id)->delete();
+
+        return redirect()->route('users.index');
+    }
 }

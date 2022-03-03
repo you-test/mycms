@@ -4,10 +4,13 @@
   <div class="reservation-stock">
     <h2>予約在庫管理</h2>
     <form action="" method="POST">
+      @csrf
       <label for="month">月選択</label>
       <input type="month" name="month" id="month" class="select-month">
+      <button>表示</button>
     </form>
     <form action="" method="POST">
+      @csrf
       <table>
         <tr>
           <th></th>

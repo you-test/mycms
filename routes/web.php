@@ -51,4 +51,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('/admin/users/detail', [UsersController::class, 'showDetail'])->name('users.detail');
     Route::post('/admin/users/update', [UsersController::class, 'update'])->name('users.update');
+    Route::post('/admin/users/delete', [UsersController::class, 'delete'])->name('users.delete');
 });

@@ -12,7 +12,9 @@
         <th></th>
       </tr>
       @foreach ($users as $user)
-        <form action="" method="POST">
+        <form action="{{ route('users.delete') }}" method="POST">
+          @csrf
+          <input type="hidden" name="id" value="{{ $user->id }}">
           <tr>
             <td><a href="{{ route('users.detail') . '?id=' . $user->id }}">{{ str_pad("$user->id", 6, "0", STR_PAD_LEFT) }}</a></td>
             <td>{{ $user->name }}</td>
