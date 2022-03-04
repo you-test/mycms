@@ -4,30 +4,40 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\getReservationStock;
+use App\Models\ReservationStock;
 
 class ReservationStockController extends Controller
 {
     public function index()
     {
-        return view('admin.reservation_stock');
+        $daysPerMonth = 0;
+        return view('admin.reservation_stock', ['days' => $daysPerMonth]);
     }
 
     /**
      * 選択した月の在庫設定データを取得する
      *
      */
-    public function getReservationStock(Request $request)
+    public function getStocks(Request $request)
     {
+        // 月の日数を取得
+        $daysPerMonth = date('t', strtotime($request->month . '-01'));
+
         // まずDBから対象年月のデータを取得
         $month = $request->month;
-        ReservationStock::whereMonth('date', '$month')->orderBy('date', 'asc')->get();
+        $stocks = ReservationStock::whereMonth('date', '$month')->orderBy('date', 'asc')->get();
+        if ($stocks) {
+
+            return redirect()->route('reservationStock.index', ['days' => $daysPerMonth]);
+        }
+
+        return redirect()->route('reservationStock.index', ['days' => $daysPerMonth]);
     }
 
     /**
      * データの登録
      */
-    public function reservationStockRegister()
+    public function registerStock(Request $request)
     {
 
     }
