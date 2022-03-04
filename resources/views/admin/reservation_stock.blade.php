@@ -3,7 +3,6 @@
 @section('content')
   <div class="reservation-stock">
     <h2>予約在庫管理</h2>
-    @php echo $days @endphp
     <form action="{{ route('reservationStock.get') }}" method="POST">
       @csrf
       <label for="month">月選択</label>
@@ -15,7 +14,7 @@
       <table>
         <tr>
           <th></th>
-          @for ($d = 0; $d < $days; $d++)
+          @for ($d = 0; $d <  $days ; $d++)
             <th>@php echo $d + 1; @endphp</th>
           @endfor
         </tr>

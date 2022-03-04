@@ -10,8 +10,7 @@ class ReservationStockController extends Controller
 {
     public function index()
     {
-        $daysPerMonth = 0;
-        return view('admin.reservation_stock', ['days' => $daysPerMonth]);
+        return view('admin.reservation_stock', ['days' => 0]);
     }
 
     /**
@@ -28,10 +27,10 @@ class ReservationStockController extends Controller
         $stocks = ReservationStock::whereMonth('date', '$month')->orderBy('date', 'asc')->get();
         if ($stocks) {
 
-            return redirect()->route('reservationStock.index', ['days' => $daysPerMonth]);
+            return view('admin.reservation_stock', ['days' => $daysPerMonth]);
         }
 
-        return redirect()->route('reservationStock.index', ['days' => $daysPerMonth]);
+        return view('admin.reservation_stock', ['days' => $daysPerMonth]);
     }
 
     /**
