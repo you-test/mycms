@@ -9,7 +9,7 @@
       <input type="month" name="month" id="month" class="select-month">
       <button>表示</button>
     </form>
-    <form action="" method="POST">
+    <form action="{{ route('reservation.register') }}" method="POST">
       @csrf
       <table>
         <tr>
@@ -21,17 +21,13 @@
         <tr>
           <td class="room-type">シングル</td>
           @for ($d = 0; $d < $days; $d++)
-            <td><input type="number" name=""></td>
-          @endfor
-        </tr>
-        <tr>
-          <td class="room-type">ダブル</td>
-          @for ($d = 0; $d < $days; $d++)
-            <td><input type="number" name=""></td>
+            <td><input type="number" name="data[@php echo $d @endphp][amount]"></td>
+            <input type="hidden" name="data[@php echo $d @endphp][room]' @endphp" value="1">
+            <input type="hidden" name="data[@php echo $d @endphp][date]' @endphp" value="{{ $month }}-@php echo $d + 1 @endphp">
           @endfor
         </tr>
       </table>
-
+      <button type="submit">在庫を確定する</button>
     </form>
   </div>
 @endsection

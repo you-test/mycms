@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     // reservationStock
     Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');
     Route::post('/admin/reservation_stock/get', [ReservationStockController::class, 'getStocks'])->name('reservationStock.get');
+    Route::post('/admin/reservation_stock/register', [ReservationStockController::class, 'registerStock'])->name('reservation.register');
 
     // reservationList
     Route::get('/admin/reservation_list', [ReservationListController::class, 'index'])->name('reservationList.index');
