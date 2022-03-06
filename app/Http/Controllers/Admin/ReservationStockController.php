@@ -25,15 +25,21 @@ class ReservationStockController extends Controller
 
         // まずDBから対象年月のデータを取得
         $month = $request->month;
-        $stocks = ReservationStock::whereMonth('date', $month)->orderBy('date', 'asc')->get();
+        $stocks = ReservationStock::whereMonth('date', substr($month, 5, 2))->orderBy('date', 'asc')->get();
 
         // データが存在する場合の処理
         if ($stocks) {
-
-            return view('admin.reservation_stock', ['days' => $daysPerMonth, 'month' => $month]);
+            return view('admin.reservation_stock', [
+                'days' => $daysPerMonth,
+                'month' => $month,
+                'stocks' => $stocks,
+            ]);
         }
 
-        return view('admin.reservation_stock', ['days' => $daysPerMonth, 'month' => $month]);
+        return view('admin.reservation_stock', [
+            'days' => $daysPerMonth,
+            'month' => $month
+        ]);
     }
 
     /**
@@ -52,7 +58,7 @@ class ReservationStockController extends Controller
             ReservationStock::create([
                 'date' => $d['date'],
                 'room_id' => $d['room'],
-                'amount' => $d['amount'],
+                'amount' => isset($d['amount']) ? $d['amount'] : 0,
             ]);
         }
 
