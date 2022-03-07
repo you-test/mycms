@@ -30,7 +30,7 @@
             @for ($d = 0; $d < $days; $d ++)
               <td><input type="number" name="data[@php echo $d @endphp][amount]"></td>
               <input type="hidden" name="data[@php echo $d @endphp][room]' @endphp" value="1">
-              <input type="hidden" name="data[@php echo $d @endphp][date]' @endphp" value="{{ $month }}'-'@php echo $d + 1 @endphp">
+              <input type="hidden" name="data[@php echo $d @endphp][date]' @endphp" value="{{ $month }}-@php echo $d + 1 @endphp">
             @endfor
           @endif
         </tr>

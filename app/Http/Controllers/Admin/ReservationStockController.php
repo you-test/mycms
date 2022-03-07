@@ -43,26 +43,48 @@ class ReservationStockController extends Controller
     }
 
     /**
-     * データの登録
+     * データの登録・更新
      */
     public function registerStock(Request $request)
     {
-        // 受け取る配列構造
-       /*  $data = ['date =>'2011-01-01', 'room' => 1, 'amount' => 10],
-            .....
-            ]
-        ]; */
+        /**
+         * $data = [['date =>'2011-01-01', 'room' => 1, 'amount' => 10],
+         *   .....
+         *  ]];
+         */
         $data = $request->data;
-        // var_dump($request->data);
         foreach ($data as $d) {
-            ReservationStock::create([
-                'date' => $d['date'],
-                'room_id' => $d['room'],
-                'amount' => isset($d['amount']) ? $d['amount'] : 0,
-            ]);
+            if (ReservationStock::where('date', $d['date'])->first()) {
+                $this->update($d);
+            } else {
+                $this->registerNew($d);
+            }
         }
 
         return redirect()->route('reservationStock.index');
-        // DB::table('reservation_stocks')->insert([$data]);
     }
+
+    // 既存データがないときの登録
+    private function registerNew($d)
+    {
+        ReservationStock::create([
+            'date' => $d['date'],
+            'room_id' => $d['room'],
+            'amount' => isset($d['amount']) ? $d['amount'] : 0,
+        ]);
+    }
+
+    // 既存データがあるときの更新
+    private function update($d)
+    {
+        ReservationStock::where('date', $d['date'])
+                        ->update([
+                            'date' => $d['date'],
+                            'room_id' => $d['room'],
+                            'amount' => isset($d['amount']) ? $d['amount'] : 0,
+                        ]);
+    }
+
+
+
 }
