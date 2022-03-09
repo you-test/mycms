@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\FirstRegisterController;
+use App\Http\Controllers\Admin\RoomController;
 
 
 /*
@@ -47,6 +48,11 @@ Route::group(['middleware' => ['auth']], function() {
     // facilities
     Route::get('/admin/facilities', [FacilitiesController::class, 'index'])->name('facilities.index');
     Route::post('/admin/facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+
+    // room
+    Route::get('/admin/room', [RoomController::class, 'index'])->name('room.index');
+    Route::get('/admin/room/register', [RoomController::class, 'showRegisterForm'])->name('room.register');
+    Route::post('/admin/room/register,', [RoomController::class, 'register'])->name('room.exec.register');
 
     // reservationStock
     Route::get('/admin/reservation_stock', [ReservationStockController::class, 'index'])->name('reservationStock.index');

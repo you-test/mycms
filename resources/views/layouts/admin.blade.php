@@ -40,6 +40,7 @@
       <div class="sidebar p-3 bg-dark position-fixed">
         <a href="{{ route('admin.index') }}" class="d-block mb-5 link-light btn menu-btn">ダッシュボード</a>
         <a href="{{ route('facilities.index') }}" class="d-block mb-5 link-light btn menu-btn">施設情報管理</a>
+        <a href="{{ route('room.index') }}" class="d-block mb-5 link-light btn menu-btn">客室設定</a>
         <a href="{{ route('reservationStock.index') }}" class="d-block mb-5 link-light btn menu-btn">予約在庫管理</a>
         <a href="{{ route('reservationList.index') }}" class="d-block mb-5 link-light btn menu-btn">予約管理</a>
         <a href="{{ route('users.index') }}" class="d-block mb-5 link-light btn menu-btn">ユーザー管理</a>

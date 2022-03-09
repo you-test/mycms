@@ -11,7 +11,7 @@
         </ul>
       </div>
     @endif
-    <form action="" method="POST">
+    <form action="{{ route('facilities.update') }}" method="POST">
       @csrf
       <label for="name">施設情報</label>
       <input type="text" name="facilitiesName" id="name" value="{{ $name }}">
