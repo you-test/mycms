@@ -3,6 +3,8 @@ version: '2'
 services:
   mariadb:
     image: docker.io/bitnami/mariadb:10.6
+    volumes:
+      - mycms_db_volume:/bitnami/mariadb
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
@@ -25,3 +27,5 @@ services:
     volumes:
       - ./:/app
     # privileged: true # Privileged mode could be required to run this container under Windows
+volumes:
+  mycms_db_volume:

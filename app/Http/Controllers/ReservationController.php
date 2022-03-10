@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\showConfirmRequest;
 use App\Models\ReservationList;
+use App\Models\Room;
+use App\Models\ReservationStock;
 
 class ReservationController extends Controller
 {
@@ -14,6 +16,7 @@ class ReservationController extends Controller
         return view('site.index');
     }
 
+    // 予約可能な部屋一覧表示
     public function showResult(Request $request)
     {
         $request->validate([
@@ -21,12 +24,42 @@ class ReservationController extends Controller
             'num'  => 'required|max:10',
         ]);
 
+        $roomRecords = Room::orderBy('id', 'asc')->get();
         $date = $request->date;
         $num = $request->num;
+        $rooms = [];
+
+        foreach ($roomRecords as $roomRecord) {
+            $room_id = $roomRecord->id;
+            $reservatedRoomAmount = $this->getReservatedRoomAmount($date, $room_id);
+            $setRoomAmount = $this->getSetRoomAmount($date, $room_id);
+
+            if ($reservatedRoomAmount < $setRoomAmount) {
+                $rooms[] = $roomRecord;
+            }
+        }
+
         $request->session()->put('date', $date);
         $request->session()->put('num', $num);
 
-        return view('site.result', ['date' => $date]);
+        return view('site.result', ['date' => $date, 'rooms' => $rooms]);
+    }
+
+    // 指定日の指定の部屋の予約済み数を取得
+    public function getReservatedRoomAmount(string $date, int $room_id)
+    {
+        $reservatedRoomReservations = ReservationList::where('date', $date)->where('room', $room_id)->count();
+
+        return $reservatedRoomReservations;
+    }
+
+    // 指定日の指定の部屋の在庫設定数を取得
+    public function getSetRoomAmount(string $date, int $room_id)
+    {
+        $setRoom = ReservationStock::where('date', $date)->where('room_id', $room_id)->first();
+        dd($setRoom);
+
+        return $setRoom->amount;
     }
 
     public function redirectToInfo()
@@ -53,7 +86,8 @@ class ReservationController extends Controller
 
         $date = $request->session()->get('date');
         $num = $request->session()->get('num');
-        $room = $request->session()->get('room');
+        $room_id = $request->session()->get('room');
+        $room = Room::where('id', $room_id)->first();
         $name = $request->name;
         $address = $request->address;
         $mail = $request->mail;
@@ -67,7 +101,7 @@ class ReservationController extends Controller
         $confirmData = [
             'date' => $date,
             'num' => $num,
-            'room' => $room,
+            'room' => $room->room,
             'name' => $name,
             'address' => $address,
             'mail' => $mail,
@@ -81,7 +115,8 @@ class ReservationController extends Controller
     {
         $date = $request->session()->get('date');
         $num = $request->session()->get('num');
-        $room = $request->session()->get('room');
+        $room_id = $request->session()->get('room');
+        $room = Room::where('id', $room_id)->first();
         $name= $request->session()->get('name');
         $address = $request->session()->get('address');
         $mail = $request->session()->get('mail');
@@ -90,7 +125,7 @@ class ReservationController extends Controller
         $sessionData = [
             'date' => $date,
             'num' => $num,
-            'room' => $room,
+            'room' => $room->room,
             'name' => $name,
             'address' => $address,
             'mail' => $mail,
