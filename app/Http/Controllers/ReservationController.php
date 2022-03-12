@@ -24,16 +24,16 @@ class ReservationController extends Controller
             'num'  => 'required|max:10',
         ]);
 
-        $roomRecords = Room::orderBy('id', 'asc')->get();
         $date = $request->date;
         $num = $request->num;
         $rooms = [];
 
+        // $full = ['1' => false, '2' => true]
+        $roomRecords = Room::orderBy('id', 'asc')->get();
         foreach ($roomRecords as $roomRecord) {
-            $room_id = $roomRecord->id;
-            $reservatedRoomAmount = $this->getReservatedRoomAmount($date, $room_id);
-            $setRoomAmount = $this->getSetRoomAmount($date, $room_id);
-
+            $roomId = $roomRecord->id;
+            $reservatedRoomAmount = $this->getReservatedRoomAmount($date, $roomId);
+            $setRoomAmount = $this->getSetRoomAmount($date, $roomId);
             if ($reservatedRoomAmount < $setRoomAmount) {
                 $rooms[] = $roomRecord;
             }
@@ -46,20 +46,22 @@ class ReservationController extends Controller
     }
 
     // 指定日の指定の部屋の予約済み数を取得
-    public function getReservatedRoomAmount(string $date, int $room_id)
+    private function getReservatedRoomAmount(string $date, int $roomId)
     {
-        $reservatedRoomReservations = ReservationList::where('date', $date)->where('room', $room_id)->count();
+        $reservatedRoomAmount = ReservationList::where('date', $date)->where('room', $roomId)->count();
 
-        return $reservatedRoomReservations;
+        return $reservatedRoomAmount;
     }
 
     // 指定日の指定の部屋の在庫設定数を取得
-    public function getSetRoomAmount(string $date, int $room_id)
+    private function getSetRoomAmount(string $date, int $roomId)
     {
-        $setRoom = ReservationStock::where('date', $date)->where('room_id', $room_id)->first();
-        dd($setRoom);
-
-        return $setRoom->amount;
+        $setRoom = ReservationStock::where('date', $date)->where('room_id', $roomId)->first();
+        if ($setRoom) {
+            $setRoomAmount = $setRoom->amount;
+            return $setRoomAmount;
+        }
+        return 0;
     }
 
     public function redirectToInfo()
@@ -69,6 +71,7 @@ class ReservationController extends Controller
 
     public function showInfo(Request $request)
     {
+        // idが入る
         $room = $request->room;
         $request->session()->put('room', $room);
 
