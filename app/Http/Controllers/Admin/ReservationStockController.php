@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ReservationStock;
 use Illuminate\Support\Facades\DB;
+use App\Models\Room;
 
 class ReservationStockController extends Controller
 {
@@ -20,6 +21,8 @@ class ReservationStockController extends Controller
      */
     public function getStocks(Request $request)
     {
+        // 客室設定で設定している部屋タイプ
+        $rooms = Room::all();
         // 月の日数を取得
         $daysPerMonth = date('t', strtotime($request->month . '-01'));
 
@@ -27,9 +30,12 @@ class ReservationStockController extends Controller
         $month = $request->month;
         $stocks = ReservationStock::whereMonth('date', substr($month, 5, 2))->orderBy('date', 'asc')->get();
 
+        // 各部屋タイプごとの連想配列の形のデータ $stocks = ['1' => room_idが1のコレクション, '2' => room_idが２のコレクション]
+
         // データが存在する場合の処理
         if ($stocks) {
             return view('admin.reservation_stock', [
+                'rooms' => $rooms,
                 'days' => $daysPerMonth,
                 'month' => $month,
                 'stocks' => $stocks,
@@ -37,6 +43,7 @@ class ReservationStockController extends Controller
         }
 
         return view('admin.reservation_stock', [
+            'rooms' => $rooms,
             'days' => $daysPerMonth,
             'month' => $month
         ]);
@@ -48,13 +55,15 @@ class ReservationStockController extends Controller
     public function registerStock(Request $request)
     {
         /**
-         * $data = [['date =>'2011-01-01', 'room' => 1, 'amount' => 10],
-         *   .....
-         *  ]];
+         * $data = [
+         * 'room1_0' => ['amount' => 2, 'room' => 1, 'date' => '2022-3-1],
+         * 'room2_0' => ['amount' => 3, 'room' => 2, 'date' => '2022-3-1],
+         * ....
+         * ];
          */
         $data = $request->data;
         foreach ($data as $d) {
-            if (ReservationStock::where('date', $d['date'])->first()) {
+            if (ReservationStock::where('date', $d['date'])->where('room_id', $d['room'])->first()) {
                 $this->update($d);
             } else {
                 $this->registerNew($d);
@@ -78,6 +87,7 @@ class ReservationStockController extends Controller
     private function update($d)
     {
         ReservationStock::where('date', $d['date'])
+                        ->where('room_id', $d['room'])
                         ->update([
                             'date' => $d['date'],
                             'room_id' => $d['room'],
