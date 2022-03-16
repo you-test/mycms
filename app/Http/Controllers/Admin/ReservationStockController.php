@@ -30,15 +30,23 @@ class ReservationStockController extends Controller
         $month = $request->month;
         $stocks = ReservationStock::whereMonth('date', substr($month, 5, 2))->orderBy('date', 'asc')->get();
 
-        // 各部屋タイプごとの連想配列の形のデータ $stocks = ['1' => room_idが1のコレクション, '2' => room_idが２のコレクション]
+        // 各部屋タイプごとの連想配列の形のデータ $stocks = [1 => [room_idが1のコレクション,... ] ,2 => [room_idが２のコレクション,...]]
+        $stocksPerRooms = [];
+        foreach ($rooms as $room) {
+            foreach ($stocks as $stock) {
+                if ($stock->room_id === $room->id) {
+                    $stocksPerRooms[$room->id][] = $stock;
+                }
+            }
+        }
 
         // データが存在する場合の処理
-        if ($stocks) {
+        if (!empty($stocksPerRooms)) {
             return view('admin.reservation_stock', [
                 'rooms' => $rooms,
                 'days' => $daysPerMonth,
                 'month' => $month,
-                'stocks' => $stocks,
+                'stocks' => $stocksPerRooms,
             ]);
         }
 
