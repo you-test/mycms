@@ -11339,6 +11339,10 @@ h2, .h2 {
   padding-top: 90px;
 }
 
+.container.admin {
+  margin-left: 200px;
+}
+
 .container.site-top {
   width: 500px;
   padding: 40px;

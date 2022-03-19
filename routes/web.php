@@ -32,11 +32,12 @@ Route::post('/info', [ReservationController::class, 'showInfo'])->name('site.inf
 Route::post('/confirm', [ReservationController::class, 'showConfirm'])->name('site.confirm');
 Route::get('/complete', [ReservationController::class, 'showComplete'])->name('site.complete');
 
-// login, firstRegister
+// login, Logout, firstRegister
 Route::get('/admin/first', [FirstRegisterController::class, 'index'])->name('first.index');
 Route::post('/admin/first/register', [FirstRegisterController::class, 'register'])->name('first.register');
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login.index');
 Route::post('/admin/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 
 // after login

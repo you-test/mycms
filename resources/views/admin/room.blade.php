@@ -2,11 +2,11 @@
 
 @section('content')
   <div class="room">
-    <h2>設定客室一覧</h2>
-    <a href="{{ route('room.register') }}" class="btn">新規登録</a>
+    <h2>客室設定</h2>
+    <a href="{{ route('room.register') }}" class="btn mb-3">新規登録</a>
     <table class="table table-bordered border-secondary">
       <tr>
-        <th></th>
+        <th>客室ID</th>
         <th>客室タイプ名</th>
       </tr>
       @foreach ($rooms as $room)

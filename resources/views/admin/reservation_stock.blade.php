@@ -3,7 +3,7 @@
 @section('content')
   <div class="reservation-stock">
     <h2>予約在庫管理</h2>
-    <form action="{{ route('reservationStock.get') }}" method="POST">
+    <form action="{{ route('reservationStock.get') }}" method="POST" class="mb-3">
       @csrf
       <label for="month">月選択</label>
       <input type="month" name="month" id="month" class="select-month">
@@ -11,7 +11,8 @@
     </form>
     <form action="{{ route('reservation.register') }}" method="POST">
       @csrf
-      <table>
+      @if (isset($rooms))
+      <table class="mb-3">
         <tr>
           <th></th>
           @for ($d = 0; $d <  $days ; $d++)
@@ -20,7 +21,6 @@
         </tr>
 
         <!-- roomのModelでforeachまわす -->
-        @if (isset($rooms))
           @foreach ($rooms as $room)
 
             <tr>
@@ -41,10 +41,9 @@
             </tr>
 
           @endforeach
+        </table>
+        <button type="submit">在庫を確定する</button>
         @endif
-
-      </table>
-      <button type="submit">在庫を確定する</button>
     </form>
   </div>
 @endsection

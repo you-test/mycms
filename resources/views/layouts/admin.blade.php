@@ -32,7 +32,7 @@
           <a href="/" class="me-5 btn h-30">サイト表示</a>
         </div>
         <div>
-          <a href="" class="btn h-30">ログアウト</a>
+          <a href="{{ route('logout') }}" class="btn h-30">ログアウト</a>
         </div>
       </div>
     </header>
@@ -45,7 +45,7 @@
         <a href="{{ route('reservationList.index') }}" class="d-block mb-5 link-light btn menu-btn">予約管理</a>
         <a href="{{ route('users.index') }}" class="d-block mb-5 link-light btn menu-btn">ユーザー管理</a>
       </div>
-      <div class="container p-3">
+      <div class="container admin pt-5">
         @yield('content')
       </div>
     </div>

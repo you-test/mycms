@@ -129,6 +129,7 @@ class ReservationController extends Controller
             'date' => $date,
             'num' => $num,
             'room' => $room->room,
+            'room_id' => $room_id,
             'name' => $name,
             'address' => $address,
             'mail' => $mail,
@@ -147,7 +148,7 @@ class ReservationController extends Controller
         ReservationList::create([
             'date' => $sessionData['date'],
             'num' => $sessionData['num'],
-            'room' => $sessionData['room'],
+            'room' => $sessionData['room_id'],
             'name' => $sessionData['name'],
             'address' => $sessionData['address'],
             'mail' => $sessionData['mail'],
